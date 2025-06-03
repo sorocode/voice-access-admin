@@ -32,12 +32,12 @@ export interface Member {
 
 // 출입 로그 타입 정의
 export interface EnterLog {
-  id: string;
+  id: number;
   memberId: string;
   memberName: string;
   phoneNumber: string;
-  enterTime: string;
-  exitTime?: string;
+  checkInTime: string;
+  checkOuttime?: string;
   status: "ENTER" | "EXIT";
 }
 
@@ -173,15 +173,15 @@ export const api = {
     },
   },
 
-  // 출입 로그 관련 API (백엔드 API가 제공된다고 가정)
+  // 출입 로그 관련 API
   enterLogs: {
-    // 모든 출입 로그 조회 (백엔드에 해당 API가 있다고 가정)
+    // 모든 출입 로그 조회
     getAll: async (): Promise<EnterLog[]> => {
       const response = await fetch(`${API_BASE_URL}/logs`);
-      return handleResponse(response);
+      const json = await handleResponse(response);
+      return json.data; // data 배열만 반환
     },
-
-    // 특정 회원의 출입 로그 조회 (백엔드에 해당 API가 있다고 가정)
+    // 특정 회원의 출입 로그 조회
     getByMemberId: async (memberId: string): Promise<EnterLog[]> => {
       const response = await fetch(`${API_BASE_URL}/logs/${memberId}`);
       return handleResponse(response);

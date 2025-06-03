@@ -67,7 +67,7 @@ export function AccessLogs() {
       log.status.toLowerCase() === statusFilter.toLowerCase();
 
     const matchesDate =
-      !date || new Date(log.enterTime).toDateString() === date.toDateString();
+      !date || new Date(log.checkInTime).toDateString() === date.toDateString();
 
     return matchesSearch && matchesStatus && matchesDate;
   });
@@ -88,7 +88,7 @@ export function AccessLogs() {
     const rows = filteredLogs.map((log) => [
       log.memberName,
       log.phoneNumber,
-      new Date(log.enterTime).toLocaleString(),
+      new Date(log.checkInTime).toLocaleString(),
       log.status === "ENTER" ? "입장" : "퇴장",
     ]);
 
@@ -259,7 +259,7 @@ export function AccessLogs() {
                           </Badge>
                         </td>
                         <td className="py-4 px-4 text-gray-600">
-                          {new Date(log.enterTime).toLocaleString()}
+                          {new Date(log.checkInTime).toLocaleString()}
                         </td>
                       </tr>
                     ))
