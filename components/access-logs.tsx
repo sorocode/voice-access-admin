@@ -224,45 +224,48 @@ export function AccessLogs() {
                       </td>
                     </tr>
                   ) : (
-                    filteredLogs.map((log) => (
-                      <tr
-                        key={log.id}
-                        className="border-b border-gray-100 hover:bg-gray-50"
-                      >
-                        <td className="py-4 px-4">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                              <span className="text-sm font-medium">
-                                {log.memberName[0]}
-                              </span>
-                            </div>
-                            <div>
-                              <div className="font-medium">
-                                {log.memberName}
+                    filteredLogs
+                      .slice()
+                      .reverse()
+                      .map((log) => (
+                        <tr
+                          key={log.id}
+                          className="border-b border-gray-100 hover:bg-gray-50"
+                        >
+                          <td className="py-4 px-4">
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                                <span className="text-sm font-medium">
+                                  {log.memberName[0]}
+                                </span>
                               </div>
-                              <div className="text-sm text-gray-500">
-                                {log.phoneNumber}
+                              <div>
+                                <div className="font-medium">
+                                  {log.memberName}
+                                </div>
+                                <div className="text-sm text-gray-500">
+                                  {log.phoneNumber}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          <Badge
-                            variant="outline"
-                            className={
-                              log.status === "ENTER"
-                                ? "text-blue-600 border-blue-200"
-                                : "text-purple-600 border-purple-200"
-                            }
-                          >
-                            {log.status === "ENTER" ? "입장" : "퇴장"}
-                          </Badge>
-                        </td>
-                        <td className="py-4 px-4 text-gray-600">
-                          {new Date(log.checkInTime).toLocaleString()}
-                        </td>
-                      </tr>
-                    ))
+                          </td>
+                          <td className="py-4 px-4">
+                            <Badge
+                              variant="outline"
+                              className={
+                                log.status === "ENTER"
+                                  ? "text-blue-600 border-blue-200"
+                                  : "text-purple-600 border-purple-200"
+                              }
+                            >
+                              {log.status === "ENTER" ? "입장" : "퇴장"}
+                            </Badge>
+                          </td>
+                          <td className="py-4 px-4 text-gray-600">
+                            {new Date(log.checkInTime).toLocaleString()}
+                          </td>
+                        </tr>
+                      ))
                   )}
                 </tbody>
               </table>
