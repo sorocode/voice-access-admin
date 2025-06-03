@@ -1,5 +1,6 @@
 // API 기본 URL 설정
-const API_BASE_URL = "http://localhost:8080/api"; // TODO: 추후 도메인으로 변경
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api";
 
 // 에러 처리 헬퍼 함수
 const handleResponse = async (response: Response) => {
